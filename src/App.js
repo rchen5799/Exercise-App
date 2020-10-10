@@ -4,6 +4,12 @@ import 'bootstrap/dist/css/boostrap.min.css'
 //import logo from './logo.svg';
 //import './App.css';
 
+import Navbar from "./components/navbar.component";
+import ExerciseList from "./components/exercise-list.component";
+import EditExercise from "./components/edit-exercise.component";
+import CreateExercise from "./components/create-exercise.component";
+import CreateUser from "./components/create-user.component";
+
 function App() {
   return (
     <Router>
