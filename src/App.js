@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/boostrap.min.css'
 //import logo from './logo.svg';
 //import './App.css';
 
+//Where the components are located
 import Navbar from "./components/navbar.component";
 import ExerciseList from "./components/exercise-list.component";
 import EditExercise from "./components/edit-exercise.component";
