@@ -5,6 +5,14 @@ export default class CreateExercises extends Component {
         //Call super when constructing from subclass
         super(props);
 
+        //Because 'this' is undefined, we need to define what 'this' is 
+        //referring to. We want 'this' to refer to the class
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeDuration = this.onChangeDuration.bind(this);
+        this.onChangeDate = this.onChangeDate.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+
         //State is how to create variables in React
         this.state = {
             //Correspondes with MongoDB
@@ -60,7 +68,11 @@ export default class CreateExercises extends Component {
             date: this.state.date
         }
 
-        console.log(exercise)
+        //Console logs this
+        console.log(exercise);
+
+        //Take the person back to the homepage
+        window.location = '/';
     }
 
     render() {
