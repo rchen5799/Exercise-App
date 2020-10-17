@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+//Importing Datepicker (picks date from calendar)
+//Need to install "npm install react-datepicker"
+import DatePicker from 'react-datepicker';
+//Making datepicker look fancier
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class CreateExercises extends Component {
     constructor(props) {
