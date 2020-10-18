@@ -44,6 +44,12 @@ export default class CreateUsers extends Component {
         //Console logs this
         console.log(user);
 
+        //posting to the backend
+        //users/add is defined in the user route for posts
+        axios.post('http://localhost:5000/users/add', user)
+            //Afterwards, send the result to the console
+            .then(res => console.log(res.data));
+
         //Set the username to 0; want user to stay on the same 
         //form upon submission
         this.setState({

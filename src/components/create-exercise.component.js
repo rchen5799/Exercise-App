@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+//library for connecting front-end to backend
+//npm install axios
+import axios from 'axios';
 //Importing Datepicker (picks date from calendar)
 //Need to install "npm install react-datepicker"
 import DatePicker from 'react-datepicker';
@@ -33,10 +36,20 @@ export default class CreateExercises extends Component {
     //Auto-called before anything displayed on page
     //"Life-Cycle" function
     componentDidMount() {
-        this.setState({
-            users: ['test user'],
-            username: 'test user'
-        })
+        //a get request
+        axios.get('http://localhost:5000/users/')
+            .then(respond => {
+                //check if it has a valid response
+                if(Response.data.length > 0) {
+                    this.setState({
+                      //data is an array, map the array
+                      //return something for every element
+                      //of the array
+                      users: Response.data.map(user => user.username),
+                      username: Response.data[0].username
+                    })
+                }
+            })
     }
 
 
@@ -86,6 +99,12 @@ export default class CreateExercises extends Component {
 
         //Console logs this
         console.log(exercise);
+
+        //post request of exercise
+        axios.post('http://localhost:5000/exercise/add')
+            //Afterwards, send result to console
+            //Should print 'Exercise Added!' on console    
+            .then(res => console.log(res.data));
 
         //Take the person back to the homepage
         window.location = '/';
