@@ -22,6 +22,16 @@ export default class ExerciseList extends Component {
             })
     }
 
+    //id is the object id from MongoDB
+    deleteExercise(id) {
+        axios.delete('http://localhost:5000/exercises/'+id)
+            .then(res => console.log(res.data));
+        
+        this.setState({
+            exercises: this.state.exercises.filter(el => el._id !== id)
+        })
+    }
+
     render() {
         return (
             <div>
