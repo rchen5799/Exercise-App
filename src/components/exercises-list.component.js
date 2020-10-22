@@ -27,7 +27,10 @@ export default class ExerciseList extends Component {
         axios.delete('http://localhost:5000/exercises/'+id)
             .then(res => console.log(res.data));
         
+        //Set state will auto update state with new state
         this.setState({
+            //Filtering will give certain element back
+            //In this case, if el.id != id that we're deleting
             exercises: this.state.exercises.filter(el => el._id !== id)
         })
     }
