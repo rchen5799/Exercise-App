@@ -2,6 +2,23 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+//Exercise Component
+//Functional React component
+//No state nor life cycle component
+//Use function component when accept props and return 
+const Exercise = props => (
+    <tr>
+        <td>{props.exercise.username}</td>
+        <td>{props.exercise.description}</td>
+        <td>{props.exercise.duration}</td>
+        <td>{props.exercise.date.substring(0,10)}</td>
+        <td>
+        <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>delete</a>
+        </td>
+    </tr>
+)
+
+//Class component
 export default class ExerciseList extends Component {
     constructor(props) {
         super(props);
