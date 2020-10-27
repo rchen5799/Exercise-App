@@ -101,7 +101,7 @@ export default class CreateExercises extends Component {
         console.log(exercise);
 
         //post request of exercise
-        axios.post('http://localhost:5000/exercises/add')
+        axios.post('http://localhost:5000/exercises/add', exercise)
             //Afterwards, send result to console
             //Should print 'Exercise Added!' on console    
             .then(res => console.log(res.data));

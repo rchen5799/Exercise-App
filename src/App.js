@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import 'bootstrap/dist/css/boostrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 //import logo from './logo.svg';
 //import './App.css';
 
