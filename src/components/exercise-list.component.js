@@ -8,42 +8,42 @@ import axios from 'axios';
 //Use function component when accept props and return 
 const Exercise = props => (
     <tr>
-        <td>{props.exercise.username}</td>
-        <td>{props.exercise.description}</td>
-        <td>{props.exercise.duration}</td>
-        <td>{props.exercise.date.substring(0,10)}</td>
-        <td>
+      <td>{props.exercise.username}</td>
+      <td>{props.exercise.description}</td>
+      <td>{props.exercise.duration}</td>
+      <td>{props.exercise.date.substring(0,10)}</td>
+      <td>
         <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>delete</a>
-        </td>
+      </td>
     </tr>
-)
+  )
 
 //Class component
-export default class ExerciseList extends Component {
+export default class ExercisesList extends Component {
     constructor(props) {
-        super(props);
-
-        this.deleteExercise = this.deleteExercise.bind(this);
-
-        this.state = {exercises: []};
+      super(props);
+  
+      this.deleteExercise = this.deleteExercise.bind(this)
+  
+      this.state = {exercises: []};
     }
 
     //getting exercises from the database
-    componentDidMount() {
-        axios.get('http://localhost:5000/exercises/')
-            .then(response => {
-                this.setState({ exercises: response.data })
-            }) 
-            .catch((error) => {
-                console.log(error);
-            })
-    }
+  componentDidMount() {
+    axios.get('http://localhost:5000/exercises/')
+      .then(response => {
+        this.setState({ exercises: response.data })
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
 
     //id is the object id from MongoDB
     deleteExercise(id) {
         axios.delete('http://localhost:5000/exercises/'+id)
-            .then(res => console.log(res.data));
-        
+          .then(response => { console.log(response.data)});
+         
         //Set state will auto update state with new state
         this.setState({
             //Filtering will give certain element back
@@ -52,6 +52,7 @@ export default class ExerciseList extends Component {
             exercises: this.state.exercises.filter(el => el._id !== id)
         })
     }
+    
 
     //ExerciseList component that is utilized below
     exerciseList() {
