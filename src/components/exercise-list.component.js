@@ -41,11 +41,11 @@ export default class ExercisesList extends Component {
 
     //id is the object id from MongoDB
     deleteExercise(id) {
-        axios.delete('http://localhost:5000/exercises/'+id)
-          .then(response => { console.log(response.data)});
-         
+      axios.delete('http://localhost:5000/exercises/'+id)
+        .then(response => { console.log(response.data)});
+
         //Set state will auto update state with new state
-        this.setState({
+      this.setState({
             //Filtering will give certain element back
             //In this case, if el.id != id that we're deleting
             //_id created from MongoDB automatically
@@ -56,30 +56,30 @@ export default class ExercisesList extends Component {
 
     //ExerciseList component that is utilized below
     exerciseList() {
-        return this.state.exercises.map(currentexercise => {
-            return <Exercise exercise = {currentexercise} deleteExercise = {this.deleteExercise} key={currentexercise._id}/>;
-        })
+      return this.state.exercises.map(currentexercise => {
+        return <Exercise exercise={currentexercise} deleteExercise={this.deleteExercise} key={currentexercise._id}/>;
+      })
     }
 
     render() {
-        return (
-            <div>
-               <h3>Logged Exercises</h3>
-               <table className="table">
-                   <thead className="thead-light">
-                        <tr>
-                            <th>Username</th>
-                            <th>Description</th>
-                            <th>Duration</th>
-                            <th>Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.exerciseList() }
-                    </tbody>
-               </table>
-            </div>
-        )
+      return (
+        <div>
+          <h3>Logged Exercises</h3>
+          <table className="table">
+            <thead className="thead-light">
+              <tr>
+                <th>Username</th>
+                <th>Description</th>
+                <th>Duration</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.exerciseList() }
+            </tbody>
+          </table>
+        </div>
+      )
     }
-}
+  }
