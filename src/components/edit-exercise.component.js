@@ -10,7 +10,7 @@ import DatePicker from 'react-datepicker';
 //Making datepicker look fancier
 import "react-datepicker/dist/react-datepicker.css";
 
-export default class EditExercises extends Component {
+export default class EditExercise extends Component {
     constructor(props) {
         //Call super when constructing from subclass
         super(props);
@@ -39,7 +39,7 @@ export default class EditExercises extends Component {
     //"Life-Cycle" function
     componentDidMount() {
         //getting new username to replace from backend
-        axios.get('http://localhost:5000/exercises/'+ this.props.match.params.id)
+        axios.get('http://localhost:5000/exercises/' + this.props.match.params.id)
             //as a response, return the exercise
             .then(response => {
                 this.setState({
@@ -47,7 +47,7 @@ export default class EditExercises extends Component {
                     description: response.data.description,
                     duration: response.data.duration,
                     date: new Date(response.data.date)
-                })
+                })   
             })
             .catch(function (error) {
                 console.log(error);
@@ -55,17 +55,20 @@ export default class EditExercises extends Component {
 
         //a get request
         axios.get('http://localhost:5000/users/')
-            .then(respond => {
+            .then(response => {
                 //check if it has a valid response
-                if(Response.data.length > 0) {
+                if (response.data.length > 0) {
                     this.setState({
                       //data is an array, map the array
                       //return something for every element
                       //of the array
-                      users: Response.data.map(user => user.username),
+                      users: response.data.map(user => user.username),
                       //username: Response.data[0].username
                     })
                 }
+            })
+            .catch((error) => {
+                console.log(error);
             })
     }
 
@@ -75,21 +78,21 @@ export default class EditExercises extends Component {
         this.setState({
             //Target is the 'textbox' in UI
             username: e.target.value
-        });
+        })
     }
 
     onChangeDescription(e) {
         this.setState({
             //Target is the 'textbox' in UI
             description: e.target.value
-        });
+        })
     }
 
     onChangeDuration(e) {
         this.setState({
             //Target is the 'textbox' in UI
             duration: e.target.value
-        });
+        })
     }
 
     //will get date from library
@@ -97,7 +100,7 @@ export default class EditExercises extends Component {
         this.setState({
             //Target is the 'textbox' in UI
             date: date
-        });
+        })
     }
 
     //Submit
@@ -129,28 +132,28 @@ export default class EditExercises extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Edit Exercise Log</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Username: </label>
-                        <select ref="userInput"
-                            required
-                            className="form-control"
-                            value={this.state.username}
-                            onChange={this.onChangeUsername}>
-                            {
-                                //Array of all the users from MongoDB database
-                                //.map returns something for each element in array
-                                this.state.users.map(function(user) {
-                                    //Return an option of the select box
-                                    return <option
-                                        key={user}
-                                        value={user}>{user}
-                                        </option>;
+        <div>
+            <h3>Edit Exercise Log</h3>
+            <form onSubmit={this.onSubmit}>
+                <div className="form-group"> 
+                    <label>Username: </label>
+                    <select ref="userInput"
+                        required
+                        className="form-control"
+                        value={this.state.username}
+                        onChange={this.onChangeUsername}>
+                        {
+                            //Array of all the users from MongoDB database
+                            //.map returns something for each element in array
+                            this.state.users.map(function(user) {
+                                //Return an option of the select box
+                                return <option 
+                                    key={user}
+                                    value={user}>{user}
+                                    </option>;
                                 })
                             }
-                            </select>
+                        </select>
                     </div>
                     <div className="form-group">
                         <label>Description: </label>
