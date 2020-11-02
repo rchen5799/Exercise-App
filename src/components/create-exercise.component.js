@@ -40,13 +40,13 @@ export default class CreateExercise extends Component {
         axios.get('http://localhost:5000/users/')
             .then(response => {
                 //check if it has a valid response
-                if(response.data.length > 0) {
+                if (response.data.length > 0) {
                     this.setState({
                       //data is an array, map the array
                       //return something for every element
                       //of the array
-                      users: response.data.map(user => user.username),
-                      username: response.data[0].username
+                        users: response.data.map(user => user.username),
+                        username: response.data[0].username
                     })
                 }
             })
@@ -116,61 +116,60 @@ export default class CreateExercise extends Component {
     render() {
         return (
         <div>
-            <h3>Create New Exercise Log</h3>
-            <form onSubmit={this.onSubmit}>
-                <div className="form-group"> 
-                    <label>Username: </label>
-                    <select ref="userInput"
-                        required
-                        className="form-control"
-                        value={this.state.username}
-                        onChange={this.onChangeUsername}>
-                        {
-                            //Array of all the users from MongoDB database
-                            //.map returns something for each element in array
-                            this.state.users.map(function(user) {
-                                    //Return an option of the select box
-                                    return <option 
-                                    key={user}
-                                    value={user}>{user}
-                                    </option>;
-                                })
-                            }
-                            </select>
-                    </div>
-                    <div className="form-group"> 
-                        <label>Description: </label>
-                         <input  type="text"
-                            required
-                            className="form-control"
-                            value={this.state.description}
-                            onChange={this.onChangeDescription}
-                            />
-                    </div>
-                    <div className="form-group">
-                        <label>Duration (in minutes): </label>
-                        <input 
-                            type="text" 
-                            className="form-control"
-                            value={this.state.duration}
-                            onChange={this.onChangeDuration}
-                            />
-                    </div>
-                    <div className="form-group">
-                    <label>Date: </label>
-                    <div>
-                        <DatePicker
-                        selected={this.state.date}
-                        onChange={this.onChangeDate}
-                        />
-                    </div>
+          <h3>Create New Exercise Log</h3>
+          <form onSubmit={this.onSubmit}>
+            <div className="form-group"> 
+              <label>Username: </label>
+              <select ref="userInput"
+                  required
+                  className="form-control"
+                  value={this.state.username}
+                  onChange={this.onChangeUsername}>
+                  {
+                    //Array of all the users from MongoDB database
+                    //.map returns something for each element in array
+                    this.state.users.map(function(user) {
+                        return <option 
+                            key={user}
+                            value={user}>{user}
+                            </option>;
+                        })
+                    }
+                </select>
                 </div>
-
+                <div className="form-group"> 
+                <label>Description: </label>
+                <input  type="text"
+                    required
+                    className="form-control"
+                    value={this.state.description}
+                    onChange={this.onChangeDescription}
+                    />
+                </div>
                 <div className="form-group">
-                    <input type="submit" value="Create Exercise Log" className="btn btn-primary" />
+                <label>Duration (in minutes): </label>
+                <input 
+                    type="text" 
+                    className="form-control"
+                    value={this.state.duration}
+                    onChange={this.onChangeDuration}
+                    />
+                </div>
+                <div className="form-group">
+                <label>Date: </label>
+                <div>
+                    <DatePicker
+                    selected={this.state.date}
+                    onChange={this.onChangeDate}
+                    />
+                </div>
+                </div>
+        
+                <div className="form-group">
+                <input type="submit" value="Create Exercise Log" className="btn btn-primary" />
                 </div>
             </form>
-        </div>
-    )
-  }
-}
+            </div>
+            )
+        }
+    }
